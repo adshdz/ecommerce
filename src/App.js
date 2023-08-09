@@ -27,7 +27,7 @@ function App() {
           </ul>
         </nav>
 
-        {/*Contenido principal*/}
+        {/*Contenido principal modificacion de prueba*/}
         <Listado/>
         <Buscador/>
         {/*Pie de página*/}
