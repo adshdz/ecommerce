@@ -1,9 +1,12 @@
 
+import { useState } from 'react';
 import './App.css';
 import { Buscador } from './componentes/Buscador';
 import { Listado } from './componentes/Listado';
 
 function App() {
+
+  const[ peliculas ,setpeliculas] =  useState();
   return (
     <>
 
@@ -28,8 +31,8 @@ function App() {
         </nav>
 
         {/*Contenido principal modificacion de prueba*/}
-        <Listado/>
-        <Buscador/>
+        <Listado listadostate = {peliculas} setlistadosteate ={setpeliculas}/>
+        <Buscador listadostate = {peliculas} setlistadosteate ={setpeliculas}/>
         {/*Pie de página*/}
         <footer className="footer">
           &copy; Máster en React - <a href="https://victorroblesweb.es">victorroblesweb.es</a>

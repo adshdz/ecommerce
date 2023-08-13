@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { guardarStorage } from '../Helper/guardarStorage';
 
 
-export const Crear = () => {
+export const Crear = ({setlistadosteate}) => {
 
   const Titulo1 = "Añadir pelicula";
   const [pelicula, setpelicula] = useState({});
@@ -19,27 +20,17 @@ export const Crear = () => {
       descripcion
     }
 
-    setpelicula(peli);
+   
+    setlistadosteate((element)=>{
+      return  [...element , peli]
+    });
     setpelititulo(titulo);
     setTimeout(() => {
       setpelititulo("");
     }, 20000);
-      guardarStorage(peli);
+      guardarStorage("pelis", peli);
       
   };
-
-const guardarStorage = (pelis) =>{
-      let elementos = JSON.parse(localStorage.getItem("pelis"));
-
-      if(Array.isArray(elementos)){
-        elementos.push(pelis);
-      } else{
-        elementos = [pelis]}
-
-        localStorage.setItem("pelis", JSON.stringify(elementos));
-
-        console.log(elementos);
-}
 
   return (
     <div>

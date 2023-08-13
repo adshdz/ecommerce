@@ -1,7 +1,7 @@
 import React from 'react'
 import { Crear } from './Crear'
 
-export const Buscador = () => {
+export const Buscador = ({setlistadosteate}) => {
   return (
     <div>{/*Barra lateral*/}
     <aside className="lateral">
@@ -13,7 +13,7 @@ export const Buscador = () => {
         </form>
       </div>
 
-    <Crear/>
+    <Crear setlistadosteate ={setlistadosteate}/>
     </aside>
 </div>
   )
