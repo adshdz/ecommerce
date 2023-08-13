@@ -6,7 +6,7 @@ import { Listado } from './componentes/Listado';
 
 function App() {
 
-  const[ peliculas ,setpeliculas] =  useState();
+  const[ peliculas ,setpeliculas] =  useState([]);
   return (
     <>
 

@@ -10,8 +10,23 @@ export const Listado = ({listadostate, setlistadosteate}) => {
 
   useEffect(() => {
     conseguirPeliculas();
-  }, [listadostate]);
+  }, []);
 
+
+  function borrarPeli(id){
+    let nuevoArrayPelis = conseguirPeliculas();
+    let nuevoArrayGuardar = nuevoArrayPelis.filter( peli => peli.id !== parseInt(id));
+    setlistadosteate(nuevoArrayGuardar);
+    localStorage.setItem("pelis", JSON.stringify(nuevoArrayGuardar))
+
+    console.log(nuevoArrayGuardar);
+    console.log("id para borrar" + id)
+  }
+
+  function editPeli(id){
+   console.log("editar")
+  }
+  
   return (
     <section id="content" className="content">
 
@@ -20,8 +35,8 @@ export const Listado = ({listadostate, setlistadosteate}) => {
         return(<article className="peli-item" key={pelicula.id}>
             <h3 className="title">{pelicula.titulo}</h3>
             <p className='description'> {pelicula.descripcion}</p>
-            <button className="edit">Editar</button>
-            <button className="delete">Borrar</button>
+            <button className="edit" onClick={ ()=>editPeli(pelicula.id)}>Editar</button>
+            <button className="delete" onClick={ ()=>borrarPeli(pelicula.id)}>Borrar</button>
           </article>)
 
         }) : "No tenemos peliculas disponibles en el momento"}

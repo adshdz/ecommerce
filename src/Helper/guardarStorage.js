@@ -1,5 +1,5 @@
 export const guardarStorage = ( campo, pelis) =>{
-    let elementos = JSON.parse(localStorage.getItem("pelis"));
+    let elementos = JSON.parse(localStorage.getItem(campo));
 
     if(Array.isArray(elementos)){
       elementos.push(pelis);
