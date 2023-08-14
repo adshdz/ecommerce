@@ -1,6 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { Editar } from './Editar';
 
-export const Listado = ({listadostate, setlistadosteate}) => {
+export const Listado = ({ listadostate, setlistadosteate }) => {
+
+    const [edit, setEdit] = useState(0);
 
   const conseguirPeliculas = () => {
     let peliculasStorage = JSON.parse(localStorage.getItem("pelis"));
@@ -9,36 +12,45 @@ export const Listado = ({listadostate, setlistadosteate}) => {
   }
 
   useEffect(() => {
-    conseguirPeliculas();
-  }, []);
+    setTimeout(() => {
+      conseguirPeliculas();
+    }, 200);}, []);
 
 
-  function borrarPeli(id){
+  function borrarPeli(id) {
     let nuevoArrayPelis = conseguirPeliculas();
-    let nuevoArrayGuardar = nuevoArrayPelis.filter( peli => peli.id !== parseInt(id));
+    let nuevoArrayGuardar = nuevoArrayPelis.filter(peli => peli.id !== parseInt(id));
     setlistadosteate(nuevoArrayGuardar);
     localStorage.setItem("pelis", JSON.stringify(nuevoArrayGuardar))
 
-    console.log(nuevoArrayGuardar);
-    console.log("id para borrar" + id)
+    console.log(listadostate)
   }
 
-  function editPeli(id){
-   console.log("editar")
+  function editPeli(id) {
+    setEdit(id);
+
+    
   }
-  
+
   return (
+    <>
     <section id="content" className="content">
 
-      {Array.isArray(listadostate) ?
+      {listadostate !==[]?
         listadostate.map(pelicula => {
-        return(<article className="peli-item" key={pelicula.id}>
+          return (<article className="peli-item" key={pelicula.id}>
             <h3 className="title">{pelicula.titulo}</h3>
             <p className='description'> {pelicula.descripcion}</p>
-            <button className="edit" onClick={ ()=>editPeli(pelicula.id)}>Editar</button>
-            <button className="delete" onClick={ ()=>borrarPeli(pelicula.id)}>Borrar</button>
+            <button className="edit" onClick={() => editPeli(pelicula.id)}>Editar</button>
+             <button className="delete" onClick={() => borrarPeli(pelicula.id)}>Borrar</button>
+             {edit === pelicula.id && (
+          <Editar  pelicula = {pelicula} />
+          )}
           </article>)
 
-        }) : "No tenemos peliculas disponibles en el momento"}
+
+        }) : "no hay nada"}
     </section>
-  )}
+    </>
+  )
+}

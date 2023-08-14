@@ -1,14 +1,23 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { guardarStorage } from '../Helper/guardarStorage';
 
 
 export const Crear = ({setlistadosteate}) => {
 
+  
+  useEffect(()=>{
+    const elementos = JSON.parse(localStorage.getItem("pelis"))
+    let elementosInicio = [];
+      elementos ? console.log("existen datos"):  localStorage.setItem("pelis", JSON.stringify(elementosInicio));
+    
+  },[])
+
   const Titulo1 = "Añadir pelicula";
-  const [pelicula, setpelicula] = useState({});
   const [pelititulo, setpelititulo] = useState("");
-  function conseguirDatos(e) {
-    ;
+  
+  
+  const conseguirDatos = (e) => {
+    
     e.preventDefault();
 
     let titulo = e.target.title.value;
@@ -20,16 +29,18 @@ export const Crear = ({setlistadosteate}) => {
       descripcion
     }
 
-   
-    setlistadosteate((element)=>{
-      return  [...element , peli]
-    });
-    setpelititulo(titulo);
-    setTimeout(() => {
-      setpelititulo("");
-    }, 20000);
+  
       guardarStorage("pelis", peli);
-      
+
+      setpelititulo(titulo);
+      setTimeout(() => {
+        setpelititulo("");
+
+           }, 20000);
+{/* Aqui tenemos un error si nos quedamos sin peliculas la funcion no sabe realizar el spreed y no lo deja guardar: la solucion fue poner settime en el componenete listado para que tome unos segundos y asi en listadostate exista algo*/}
+           setlistadosteate((element)=>{
+            return  [...element , peli]
+          });        
   };
 
   return (
@@ -38,7 +49,7 @@ export const Crear = ({setlistadosteate}) => {
         <h3 className="title">{Titulo1}</h3>
 
         <strong>
-          {(pelititulo.length > 1) ? "has creado la pelicula:  " + pelicula.titulo : ""}
+          {(pelititulo.length > 1) ? "has creado la pelicula:  " + pelititulo : ""}
         </strong>
         <form onSubmit={e => conseguirDatos(e)}>
           <input

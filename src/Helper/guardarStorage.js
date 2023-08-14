@@ -8,5 +8,4 @@ export const guardarStorage = ( campo, pelis) =>{
 
       localStorage.setItem(campo, JSON.stringify(elementos));
 
-      console.log(elementos);
-}
+     }
