@@ -23,6 +23,13 @@ export const Crear = ({setlistadosteate}) => {
     let titulo = e.target.title.value;
     let descripcion = e.target.description.value;
 
+    setTimeout(() => {
+      e.target.title.value = null;
+      e.target.description.value = null;
+      
+    }, 2000);
+
+
     let peli = {
       id: new Date().getTime(),
       titulo,
@@ -55,10 +62,10 @@ export const Crear = ({setlistadosteate}) => {
           <input
             type="text"
             id="title"
-            placeholder="Titulo" />
+            placeholder="Titulo" required/>
           <textarea
             id="description"
-            placeholder="Descripción"></textarea>
+            placeholder="Descripción" required></textarea>
           <input
             type="submit"
             id="save"

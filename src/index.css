@@ -8,6 +8,11 @@ body{
   margin: 0px;
 }
 
+
+.cancel{
+    margin-left: 5px;
+}
+
 .layout{
   width: 100%;
   height: auto;
@@ -218,3 +223,4 @@ input[type="button"]{
       width: 80%;
   }
 }
+

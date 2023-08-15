@@ -28,8 +28,6 @@ export const Listado = ({ listadostate, setlistadosteate }) => {
 
   function editPeli(id) {
     setEdit(id);
-
-    
   }
 
   return (
@@ -44,7 +42,7 @@ export const Listado = ({ listadostate, setlistadosteate }) => {
             <button className="edit" onClick={() => editPeli(pelicula.id)}>Editar</button>
              <button className="delete" onClick={() => borrarPeli(pelicula.id)}>Borrar</button>
              {edit === pelicula.id && (
-          <Editar  pelicula = {pelicula} />
+          <Editar  pelicula = {pelicula}  conseguirPeliculas ={conseguirPeliculas} setEdit = {setEdit}/>
           )}
           </article>)
 
